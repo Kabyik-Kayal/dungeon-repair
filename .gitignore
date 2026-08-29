@@ -1,0 +1,21 @@
+# data is fetched, not vendored
+data/TheVGLC/
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# secrets
+.env
+
+# eval outputs are committed deliberately (see eval/results); scratch is not
+eval/scratch/
+.DS_Store
+
+# verified-candidate cache: deterministic, regenerated on demand
+eval/candidates/
