@@ -1,0 +1,363 @@
+{
+  "id": "LoZ2_3#1",
+  "game": "LoZ",
+  "source_level": "LoZ2_3",
+  "kind": "severed_corridor",
+  "story": "a corridor between two rooms was dropped",
+  "note": "",
+  "truth": {
+    "kind": "add_door",
+    "a": "5",
+    "b": "8"
+  },
+  "broken": {
+    "id": "LoZ2_3",
+    "game": "LoZ",
+    "rooms": {
+      "0": [
+        "t"
+      ],
+      "1": [
+        "e",
+        "k"
+      ],
+      "2": [
+        "I",
+        "e"
+      ],
+      "3": [
+        "p"
+      ],
+      "4": [
+        "e",
+        "k"
+      ],
+      "5": [
+        "e",
+        "k"
+      ],
+      "6": [
+        "b"
+      ],
+      "7": [
+        "e",
+        "i",
+        "p"
+      ],
+      "8": [],
+      "9": [
+        "s"
+      ],
+      "10": [
+        "e",
+        "i",
+        "p"
+      ],
+      "11": [
+        "e",
+        "i",
+        "k"
+      ]
+    },
+    "passages": [
+      {
+        "from": "9",
+        "to": "8",
+        "requires": []
+      },
+      {
+        "from": "8",
+        "to": "9",
+        "requires": []
+      },
+      {
+        "from": "5",
+        "to": "11",
+        "requires": []
+      },
+      {
+        "from": "11",
+        "to": "5",
+        "requires": []
+      },
+      {
+        "from": "11",
+        "to": "10",
+        "requires": []
+      },
+      {
+        "from": "10",
+        "to": "11",
+        "requires": []
+      },
+      {
+        "from": "4",
+        "to": "3",
+        "requires": []
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "requires": []
+      },
+      {
+        "from": "10",
+        "to": "4",
+        "requires": []
+      },
+      {
+        "from": "4",
+        "to": "10",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "1",
+        "to": "0",
+        "requires": []
+      },
+      {
+        "from": "0",
+        "to": "1",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "2",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "6",
+        "to": "5",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "6",
+        "to": "7",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "7",
+        "to": "6",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "7",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "7",
+        "requires": [
+          "l"
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": "LoZ2_3",
+    "game": "LoZ",
+    "rooms": {
+      "0": [
+        "t"
+      ],
+      "1": [
+        "e",
+        "k"
+      ],
+      "2": [
+        "I",
+        "e"
+      ],
+      "3": [
+        "p"
+      ],
+      "4": [
+        "e",
+        "k"
+      ],
+      "5": [
+        "e",
+        "k"
+      ],
+      "6": [
+        "b"
+      ],
+      "7": [
+        "e",
+        "i",
+        "p"
+      ],
+      "8": [],
+      "9": [
+        "s"
+      ],
+      "10": [
+        "e",
+        "i",
+        "p"
+      ],
+      "11": [
+        "e",
+        "i",
+        "k"
+      ]
+    },
+    "passages": [
+      {
+        "from": "9",
+        "to": "8",
+        "requires": []
+      },
+      {
+        "from": "8",
+        "to": "9",
+        "requires": []
+      },
+      {
+        "from": "8",
+        "to": "5",
+        "requires": []
+      },
+      {
+        "from": "5",
+        "to": "8",
+        "requires": []
+      },
+      {
+        "from": "5",
+        "to": "11",
+        "requires": []
+      },
+      {
+        "from": "11",
+        "to": "5",
+        "requires": []
+      },
+      {
+        "from": "11",
+        "to": "10",
+        "requires": []
+      },
+      {
+        "from": "10",
+        "to": "11",
+        "requires": []
+      },
+      {
+        "from": "4",
+        "to": "3",
+        "requires": []
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "requires": []
+      },
+      {
+        "from": "10",
+        "to": "4",
+        "requires": []
+      },
+      {
+        "from": "4",
+        "to": "10",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "1",
+        "to": "0",
+        "requires": []
+      },
+      {
+        "from": "0",
+        "to": "1",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "2",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "6",
+        "to": "5",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "6",
+        "to": "7",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "7",
+        "to": "6",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "7",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "7",
+        "requires": [
+          "l"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "method": "single_prompt",
+  "cases": 77,
+  "solvable": 61,
+  "solvable_rate": 0.7922077922077922,
+  "intent_hits": 23,
+  "intent_rate": 0.2987012987012987,
+  "layout_mean": 0.9613520485591617,
+  "seconds_mean": 29.87471320127007,
+  "seconds_total": 2300.3529164977954,
+  "cost_usd_total": 0.26881700000000003,
+  "cost_usd_mean": 0.0034911298701298704,
+  "errors": 13,
+  "by_kind": {
+    "displaced_key": {
+      "n": 15,
+      "intent": 1,
+      "rate": 0.06666666666666667
+    },
+    "severed_corridor": {
+      "n": 31,
+      "intent": 5,
+      "rate": 0.16129032258064516
+    },
+    "spurious_lock": {
+      "n": 31,
+      "intent": 17,
+      "rate": 0.5483870967741935
+    }
+  }
+}

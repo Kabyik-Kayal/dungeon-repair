@@ -1,0 +1,615 @@
+{
+  "id": "LttP_4#1",
+  "game": "LttP",
+  "source_level": "LttP_4",
+  "kind": "displaced_key",
+  "story": "a small key was placed in the wrong room",
+  "note": "",
+  "truth": {
+    "kind": "move_key",
+    "a": "11",
+    "b": "4"
+  },
+  "broken": {
+    "id": "LttP_4",
+    "game": "LttP",
+    "rooms": {
+      "0": [
+        "e"
+      ],
+      "1": [
+        "t"
+      ],
+      "2": [
+        "e",
+        "p"
+      ],
+      "3": [
+        "e"
+      ],
+      "4": [
+        "e",
+        "p"
+      ],
+      "5": [
+        "e"
+      ],
+      "6": [
+        "e",
+        "k"
+      ],
+      "7": [
+        "e"
+      ],
+      "8": [
+        "e"
+      ],
+      "9": [
+        "e",
+        "i",
+        "k"
+      ],
+      "10": [
+        "e",
+        "p"
+      ],
+      "11": [
+        "e",
+        "k"
+      ],
+      "12": [
+        "e",
+        "p"
+      ],
+      "13": [
+        "p"
+      ],
+      "14": [
+        "s"
+      ],
+      "15": [
+        "e"
+      ],
+      "16": [],
+      "17": [
+        "e",
+        "k"
+      ],
+      "18": [],
+      "19": [
+        "b"
+      ]
+    },
+    "passages": [
+      {
+        "from": "14",
+        "to": "16",
+        "requires": []
+      },
+      {
+        "from": "16",
+        "to": "14",
+        "requires": []
+      },
+      {
+        "from": "16",
+        "to": "15",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "15",
+        "to": "16",
+        "requires": []
+      },
+      {
+        "from": "17",
+        "to": "15",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "15",
+        "to": "17",
+        "requires": []
+      },
+      {
+        "from": "17",
+        "to": "5",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "17",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "7",
+        "to": "4",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "4",
+        "to": "7",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "4",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "4",
+        "to": "5",
+        "requires": []
+      },
+      {
+        "from": "7",
+        "to": "0",
+        "requires": []
+      },
+      {
+        "from": "0",
+        "to": "7",
+        "requires": []
+      },
+      {
+        "from": "0",
+        "to": "10",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "10",
+        "to": "0",
+        "requires": []
+      },
+      {
+        "from": "6",
+        "to": "10",
+        "requires": []
+      },
+      {
+        "from": "10",
+        "to": "6",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "6",
+        "to": "11",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "11",
+        "to": "6",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "11",
+        "to": "3",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "11",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "9",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "9",
+        "to": "3",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "9",
+        "to": "8",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "8",
+        "to": "9",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "8",
+        "to": "2",
+        "requires": []
+      },
+      {
+        "from": "2",
+        "to": "8",
+        "requires": []
+      },
+      {
+        "from": "2",
+        "to": "12",
+        "requires": []
+      },
+      {
+        "from": "12",
+        "to": "2",
+        "requires": []
+      },
+      {
+        "from": "12",
+        "to": "18",
+        "requires": []
+      },
+      {
+        "from": "18",
+        "to": "12",
+        "requires": []
+      },
+      {
+        "from": "18",
+        "to": "13",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "13",
+        "to": "18",
+        "requires": []
+      },
+      {
+        "from": "13",
+        "to": "19",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "19",
+        "to": "13",
+        "requires": []
+      },
+      {
+        "from": "19",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "19",
+        "requires": []
+      }
+    ]
+  },
+  "original": {
+    "id": "LttP_4",
+    "game": "LttP",
+    "rooms": {
+      "0": [
+        "e"
+      ],
+      "1": [
+        "t"
+      ],
+      "2": [
+        "e",
+        "p"
+      ],
+      "3": [
+        "e"
+      ],
+      "4": [
+        "e",
+        "k",
+        "p"
+      ],
+      "5": [
+        "e"
+      ],
+      "6": [
+        "e",
+        "k"
+      ],
+      "7": [
+        "e"
+      ],
+      "8": [
+        "e"
+      ],
+      "9": [
+        "e",
+        "i",
+        "k"
+      ],
+      "10": [
+        "e",
+        "p"
+      ],
+      "11": [
+        "e"
+      ],
+      "12": [
+        "e",
+        "p"
+      ],
+      "13": [
+        "p"
+      ],
+      "14": [
+        "s"
+      ],
+      "15": [
+        "e"
+      ],
+      "16": [],
+      "17": [
+        "e",
+        "k"
+      ],
+      "18": [],
+      "19": [
+        "b"
+      ]
+    },
+    "passages": [
+      {
+        "from": "14",
+        "to": "16",
+        "requires": []
+      },
+      {
+        "from": "16",
+        "to": "14",
+        "requires": []
+      },
+      {
+        "from": "16",
+        "to": "15",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "15",
+        "to": "16",
+        "requires": []
+      },
+      {
+        "from": "17",
+        "to": "15",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "15",
+        "to": "17",
+        "requires": []
+      },
+      {
+        "from": "17",
+        "to": "5",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "17",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "7",
+        "to": "4",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "4",
+        "to": "7",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "4",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "4",
+        "to": "5",
+        "requires": []
+      },
+      {
+        "from": "7",
+        "to": "0",
+        "requires": []
+      },
+      {
+        "from": "0",
+        "to": "7",
+        "requires": []
+      },
+      {
+        "from": "0",
+        "to": "10",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "10",
+        "to": "0",
+        "requires": []
+      },
+      {
+        "from": "6",
+        "to": "10",
+        "requires": []
+      },
+      {
+        "from": "10",
+        "to": "6",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "6",
+        "to": "11",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "11",
+        "to": "6",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "11",
+        "to": "3",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "11",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "9",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "9",
+        "to": "3",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "9",
+        "to": "8",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "8",
+        "to": "9",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "8",
+        "to": "2",
+        "requires": []
+      },
+      {
+        "from": "2",
+        "to": "8",
+        "requires": []
+      },
+      {
+        "from": "2",
+        "to": "12",
+        "requires": []
+      },
+      {
+        "from": "12",
+        "to": "2",
+        "requires": []
+      },
+      {
+        "from": "12",
+        "to": "18",
+        "requires": []
+      },
+      {
+        "from": "18",
+        "to": "12",
+        "requires": []
+      },
+      {
+        "from": "18",
+        "to": "13",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "13",
+        "to": "18",
+        "requires": []
+      },
+      {
+        "from": "13",
+        "to": "19",
+        "requires": [
+          "l"
+        ]
+      },
+      {
+        "from": "19",
+        "to": "13",
+        "requires": []
+      },
+      {
+        "from": "19",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "19",
+        "requires": []
+      }
+    ]
+  }
+}

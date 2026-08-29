@@ -1,0 +1,31 @@
+{
+  "method": "rejection",
+  "cases": 77,
+  "solvable": 77,
+  "solvable_rate": 1.0,
+  "intent_hits": 0,
+  "intent_rate": 0.0,
+  "layout_mean": 0.03367743584215474,
+  "seconds_mean": 0.0018605908557361402,
+  "seconds_total": 0.1432654958916828,
+  "cost_usd_total": 0.0,
+  "cost_usd_mean": 0.0,
+  "errors": 0,
+  "by_kind": {
+    "displaced_key": {
+      "n": 15,
+      "intent": 0,
+      "rate": 0.0
+    },
+    "severed_corridor": {
+      "n": 31,
+      "intent": 0,
+      "rate": 0.0
+    },
+    "spurious_lock": {
+      "n": 31,
+      "intent": 0,
+      "rate": 0.0
+    }
+  }
+}

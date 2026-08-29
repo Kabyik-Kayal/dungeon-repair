@@ -1,0 +1,31 @@
+{
+  "method": "first_valid",
+  "cases": 77,
+  "solvable": 77,
+  "solvable_rate": 1.0,
+  "intent_hits": 26,
+  "intent_rate": 0.33766233766233766,
+  "layout_mean": 0.9648482106504571,
+  "seconds_mean": 0.06062727009306069,
+  "seconds_total": 4.668299797165673,
+  "cost_usd_total": 0.0,
+  "cost_usd_mean": 0.0,
+  "errors": 0,
+  "by_kind": {
+    "displaced_key": {
+      "n": 15,
+      "intent": 0,
+      "rate": 0.0
+    },
+    "severed_corridor": {
+      "n": 31,
+      "intent": 1,
+      "rate": 0.03225806451612903
+    },
+    "spurious_lock": {
+      "n": 31,
+      "intent": 25,
+      "rate": 0.8064516129032258
+    }
+  }
+}

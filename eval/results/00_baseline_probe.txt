@@ -1,0 +1,87 @@
+LA_1#1         displaced_key     truth=move_key(13,5)             first=unlock(13,16)              miss valid=   96/  260 enum=  0.08s
+LA_1#2         severed_corridor  truth=add_door(1,2)              first=add_door(0,2)              miss valid=   17/  280 enum=  0.02s
+LA_1#3         spurious_lock     truth=unlock(19,20)              first=unlock(13,16)              miss valid=   97/  280 enum=  0.17s
+LA_3#1         severed_corridor  truth=add_door(39,40)            first=add_door(0,40)             miss valid=   35/ 1156 enum=170.56s
+LA_3#2         spurious_lock     truth=unlock(1,2)                first=unlock(1,2)                HIT  valid=   38/ 1156 enum=  2.34s
+LA_4#1         displaced_key     truth=move_key(28,22)            first=unlock(0,3)                miss valid=  220/  774 enum=  0.58s
+LA_4#2         severed_corridor  truth=add_door(20,21)            first=add_door(0,20)             miss valid=   16/  775 enum=  0.06s
+LA_4#3         spurious_lock     truth=unlock(2,3)                first=unlock(0,3)                miss valid=  232/  775 enum=  0.58s
+LA_5#1         displaced_key     truth=move_key(34,44)            first=unlock(31,36)              miss valid=  196/ 1145 enum=  0.51s
+LA_5#2         severed_corridor  truth=add_door(10,11)            first=unlock(44,5)               miss valid=   76/ 1146 enum=  0.52s
+LA_5#3         spurious_lock     truth=unlock(39,40)              first=unlock(31,36)              miss valid=  250/ 1146 enum=  0.99s
+LA_6#1         severed_corridor  truth=add_door(39,42)            first=unlock(46,8)               miss valid=  155/ 1241 enum=  3.87s
+LA_6#2         spurious_lock     truth=unlock(23,25)              first=unlock(23,25)              HIT  valid=   34/ 1241 enum=  0.20s
+LA_7#1         severed_corridor  truth=add_door(50,52)            first=add_door(0,52)             miss valid=   45/ 1444 enum=  8.97s
+LA_7#2         spurious_lock     truth=unlock(16,4)               first=unlock(16,4)               HIT  valid=  151/ 1444 enum=  7.15s
+LA_8#1         severed_corridor  truth=add_door(52,53)            first=add_door(0,1)              miss valid=  612/ 2132 enum= 27.83s
+LA_8#2         spurious_lock     truth=unlock(33,34)              first=unlock(33,34)              HIT  valid=   49/ 2132 enum=  2.44s
+LoZ2_1#1       severed_corridor  truth=add_door(2,4)              first=add_door(0,4)              miss valid=    8/  158 enum=  0.00s
+LoZ2_1#2       spurious_lock     truth=unlock(2,4)                first=unlock(2,4)                HIT  valid=   11/  158 enum=  0.01s
+LoZ2_2#1       severed_corridor  truth=add_door(13,19)            first=add_door(0,5)              miss valid=   35/  433 enum=  3.09s
+LoZ2_2#2       spurious_lock     truth=unlock(16,17)              first=unlock(16,17)              HIT  valid=   44/  433 enum=  0.05s
+LoZ2_3#1       severed_corridor  truth=add_door(5,8)              first=add_door(0,8)              miss valid=   12/  114 enum=  0.00s
+LoZ2_3#2       spurious_lock     truth=unlock(8,9)                first=unlock(8,9)                HIT  valid=   12/  114 enum=  0.00s
+LoZ2_4#1       severed_corridor  truth=add_door(15,19)            first=add_door(0,11)             miss valid=  134/  738 enum=  0.07s
+LoZ2_4#2       spurious_lock     truth=unlock(12,13)              first=unlock(12,13)              HIT  valid=   29/  738 enum=  0.04s
+LoZ2_5#1       displaced_key     truth=move_key(8,18)             first=unlock(0,1)                miss valid=   99/  231 enum=  0.03s
+LoZ2_5#2       severed_corridor  truth=add_door(11,18)            first=add_door(0,5)              miss valid=   39/  232 enum=  0.06s
+LoZ2_5#3       spurious_lock     truth=unlock(0,3)                first=unlock(0,3)                HIT  valid=   30/  232 enum=  0.01s
+LoZ2_6#1       displaced_key     truth=move_key(1,27)             first=unlock(10,13)              miss valid=   89/  539 enum=  0.05s
+LoZ2_6#2       severed_corridor  truth=add_door(24,28)            first=add_door(0,24)             miss valid=   14/  540 enum=  0.03s
+LoZ2_6#3       spurious_lock     truth=unlock(23,26)              first=unlock(10,13)              miss valid=   90/  540 enum=  0.06s
+LoZ2_7#1       severed_corridor  truth=add_door(0,1)              first=add_door(0,1)              HIT  valid=   29/  539 enum=  0.03s
+LoZ2_7#2       spurious_lock     truth=unlock(0,1)                first=unlock(0,1)                HIT  valid=   32/  539 enum=  0.03s
+LoZ2_8#1       severed_corridor  truth=add_door(12,13)            first=add_door(1,13)             miss valid=   40/  792 enum=  0.08s
+LoZ2_8#2       spurious_lock     truth=unlock(12,13)              first=unlock(12,13)              HIT  valid=   48/  792 enum=  0.12s
+LoZ2_9#1       severed_corridor  truth=add_door(58,59)            first=add_door(0,58)             miss valid=   61/ 2155 enum=  0.17s
+LoZ2_9#2       spurious_lock     truth=unlock(58,59)              first=unlock(58,59)              HIT  valid=   62/ 2155 enum=  0.18s
+LoZ_1#1        severed_corridor  truth=add_door(7,8)              first=add_door(0,7)              miss valid=    8/  285 enum=  0.01s
+LoZ_1#2        spurious_lock     truth=unlock(7,8)                first=unlock(7,8)                HIT  valid=   15/  285 enum=  0.01s
+LoZ_2#1        severed_corridor  truth=add_door(13,14)            first=add_door(0,14)             miss valid=   10/  248 enum=  0.01s
+LoZ_2#2        spurious_lock     truth=unlock(13,14)              first=unlock(13,14)              HIT  valid=   15/  248 enum=  0.02s
+LoZ_3#1        severed_corridor  truth=add_door(17,9)             first=add_door(0,9)              miss valid=   36/  291 enum=  0.01s
+LoZ_3#2        spurious_lock     truth=unlock(12,14)              first=unlock(12,14)              HIT  valid=   17/  291 enum=  0.01s
+LoZ_4#1        displaced_key     truth=move_key(6,15)             first=unlock(0,16)               miss valid=  166/  468 enum=  0.16s
+LoZ_4#2        severed_corridor  truth=add_door(11,9)             first=add_door(2,9)              miss valid=    6/  469 enum=  0.02s
+LoZ_4#3        spurious_lock     truth=unlock(11,13)              first=unlock(0,16)               miss valid=  164/  469 enum=  0.14s
+LoZ_5#1        severed_corridor  truth=add_door(20,21)            first=add_door(0,1)              miss valid=   64/  387 enum=  0.79s
+LoZ_5#2        spurious_lock     truth=unlock(10,8)               first=unlock(10,8)               HIT  valid=   12/  387 enum=  0.02s
+LoZ_6#1        displaced_key     truth=move_key(23,13)            first=unlock(10,15)              miss valid=   60/  470 enum=  0.04s
+LoZ_6#2        severed_corridor  truth=add_door(14,15)            first=add_door(0,10)             miss valid=   70/  471 enum=  0.06s
+LoZ_6#3        spurious_lock     truth=unlock(14,17)              first=unlock(10,15)              miss valid=  100/  471 enum=  0.07s
+LoZ_7#1        severed_corridor  truth=add_door(22,23)            first=add_door(0,11)             miss valid=  186/  750 enum=  0.32s
+LoZ_7#2        spurious_lock     truth=unlock(11,13)              first=unlock(11,13)              HIT  valid=   29/  750 enum=  0.09s
+LoZ_8#1        severed_corridor  truth=add_door(10,12)            first=add_door(0,10)             miss valid=   18/  554 enum=  0.03s
+LoZ_8#2        spurious_lock     truth=unlock(10,12)              first=unlock(10,12)              HIT  valid=   25/  554 enum=  0.03s
+LoZ_9#1        displaced_key     truth=move_key(55,44)            first=unlock(1,2)                miss valid=  547/ 2174 enum=  1.07s
+LoZ_9#2        severed_corridor  truth=add_door(29,30)            first=add_door(0,29)             miss valid=   37/ 2175 enum=  0.23s
+LoZ_9#3        spurious_lock     truth=unlock(29,30)              first=unlock(29,30)              HIT  valid=   48/ 2175 enum=  0.27s
+LttP_1#1       displaced_key     truth=move_key(26,9)             first=unlock(1,9)                miss valid=  137/  511 enum=  0.17s
+LttP_1#2       severed_corridor  truth=add_door(12,25)            first=unlock(12,9)               miss valid=  135/  541 enum=  0.09s
+LttP_1#3       spurious_lock     truth=unlock(21,24)              first=unlock(12,9)               miss valid=  126/  541 enum=  0.15s
+LttP_11#1      displaced_key     truth=move_key(27,35)            first=unlock(0,2)                miss valid=  184/ 1026 enum=  0.47s
+LttP_11#2      severed_corridor  truth=add_door(13,17)            first=add_door(0,6)              miss valid=  235/ 1027 enum=  1.36s
+LttP_11#3      spurious_lock     truth=unlock(13,17)              first=unlock(0,2)                miss valid=  427/ 1027 enum=  1.58s
+LttP_2#1       displaced_key     truth=move_key(1,0)              first=unlock(0,17)               miss valid=  167/  567 enum=  0.73s
+LttP_2#2       severed_corridor  truth=add_door(24,7)             first=add_door(0,9)              miss valid=  121/  597 enum=  0.43s
+LttP_2#3       spurious_lock     truth=unlock(24,9)               first=unlock(24,9)               HIT  valid=  112/  597 enum=  0.47s
+LttP_4#1       displaced_key     truth=move_key(13,6)             first=unlock(11,6)               miss valid=   92/  276 enum=  0.03s
+LttP_4#2       severed_corridor  truth=add_door(2,8)              first=add_door(0,1)              miss valid=   50/  277 enum=  0.06s
+LttP_4#3       spurious_lock     truth=unlock(12,2)               first=unlock(11,6)               miss valid=  101/  277 enum=  0.06s
+LttP_6#1       displaced_key     truth=move_key(13,18)            first=unlock(18,20)              miss valid=  111/  967 enum=  0.25s
+LttP_6#2       severed_corridor  truth=add_door(33,37)            first=add_door(0,1)              miss valid=   66/  968 enum= 10.15s
+LttP_6#3       spurious_lock     truth=unlock(15,17)              first=unlock(15,17)              HIT  valid=   55/  968 enum=  0.13s
+LttP_8#1       displaced_key     truth=move_key(28,20)            first=unlock(15,18)              miss valid=  155/  563 enum=  0.10s
+LttP_8#2       severed_corridor  truth=add_door(10,13)            first=unlock(14,20)              miss valid=   38/  564 enum=  0.06s
+LttP_8#3       spurious_lock     truth=unlock(21,24)              first=unlock(15,18)              miss valid=  194/  564 enum=  0.14s
+
+cases: 76
+first-valid solvability: 76/76
+first-valid intent recovery: 22/76 = 28.9%
+valid fixes per case: min=6 median=60.5 mean=97 max=612
+random-valid-pick expectation: 2.9%
+first-valid: mean 73 edits considered, 0.683s/case
+full enumeration: mean 3.30s/case, total 303s
+  displaced_key: 0/14
+  severed_corridor: 1/31
+  spurious_lock: 21/31

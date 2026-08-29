@@ -1,0 +1,458 @@
+{
+  "id": "spiral_keep#hard",
+  "game": "handmade",
+  "source_level": "spiral_keep",
+  "kind": "displaced_key",
+  "story": "a small key was placed in the wrong room",
+  "note": "Deliberately hard. The keep repeats one rhythm three times: an alcove holding the key for the gate directly ahead. The third key generated behind its own gate. Many repairs verify -- unlocking any gate, adding a spare key anywhere reachable, cutting a new corridor, or moving the stranded key to any reachable room. Only returning it to alcove 12 keeps the rhythm intact.",
+  "truth": {
+    "kind": "move_key",
+    "a": "13",
+    "b": "12"
+  },
+  "broken": {
+    "id": "spiral_keep",
+    "game": "handmade",
+    "rooms": {
+      "0": [
+        "s"
+      ],
+      "1": [
+        "e"
+      ],
+      "2": [
+        "e"
+      ],
+      "3": [
+        "e",
+        "p"
+      ],
+      "4": [
+        "e"
+      ],
+      "5": [
+        "b"
+      ],
+      "6": [
+        "t"
+      ],
+      "10": [
+        "k"
+      ],
+      "11": [
+        "k"
+      ],
+      "12": [],
+      "13": [
+        "K",
+        "k"
+      ],
+      "14": [
+        "e"
+      ],
+      "15": [
+        "p"
+      ],
+      "16": [
+        "e"
+      ],
+      "17": [
+        "e"
+      ],
+      "18": [
+        "p"
+      ]
+    },
+    "passages": [
+      {
+        "from": "0",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "0",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "10",
+        "requires": []
+      },
+      {
+        "from": "10",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "14",
+        "requires": []
+      },
+      {
+        "from": "14",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "14",
+        "to": "15",
+        "requires": []
+      },
+      {
+        "from": "15",
+        "to": "14",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "2",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "2",
+        "to": "1",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "2",
+        "to": "11",
+        "requires": []
+      },
+      {
+        "from": "11",
+        "to": "2",
+        "requires": []
+      },
+      {
+        "from": "2",
+        "to": "18",
+        "requires": []
+      },
+      {
+        "from": "18",
+        "to": "2",
+        "requires": []
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "2",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "12",
+        "requires": []
+      },
+      {
+        "from": "12",
+        "to": "3",
+        "requires": []
+      },
+      {
+        "from": "3",
+        "to": "16",
+        "requires": []
+      },
+      {
+        "from": "16",
+        "to": "3",
+        "requires": []
+      },
+      {
+        "from": "16",
+        "to": "17",
+        "requires": []
+      },
+      {
+        "from": "17",
+        "to": "16",
+        "requires": []
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "4",
+        "to": "3",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "4",
+        "to": "13",
+        "requires": []
+      },
+      {
+        "from": "13",
+        "to": "4",
+        "requires": []
+      },
+      {
+        "from": "4",
+        "to": "5",
+        "requires": [
+          "K"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "4",
+        "requires": [
+          "K"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "requires": []
+      },
+      {
+        "from": "6",
+        "to": "5",
+        "requires": []
+      }
+    ]
+  },
+  "original": {
+    "id": "spiral_keep",
+    "game": "handmade",
+    "rooms": {
+      "0": [
+        "s"
+      ],
+      "1": [
+        "e"
+      ],
+      "2": [
+        "e"
+      ],
+      "3": [
+        "e",
+        "p"
+      ],
+      "4": [
+        "e"
+      ],
+      "5": [
+        "b"
+      ],
+      "6": [
+        "t"
+      ],
+      "10": [
+        "k"
+      ],
+      "11": [
+        "k"
+      ],
+      "12": [
+        "k"
+      ],
+      "13": [
+        "K"
+      ],
+      "14": [
+        "e"
+      ],
+      "15": [
+        "p"
+      ],
+      "16": [
+        "e"
+      ],
+      "17": [
+        "e"
+      ],
+      "18": [
+        "p"
+      ]
+    },
+    "passages": [
+      {
+        "from": "0",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "0",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "10",
+        "requires": []
+      },
+      {
+        "from": "10",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "14",
+        "requires": []
+      },
+      {
+        "from": "14",
+        "to": "1",
+        "requires": []
+      },
+      {
+        "from": "14",
+        "to": "15",
+        "requires": []
+      },
+      {
+        "from": "15",
+        "to": "14",
+        "requires": []
+      },
+      {
+        "from": "1",
+        "to": "2",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "2",
+        "to": "1",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "2",
+        "to": "11",
+        "requires": []
+      },
+      {
+        "from": "11",
+        "to": "2",
+        "requires": []
+      },
+      {
+        "from": "2",
+        "to": "18",
+        "requires": []
+      },
+      {
+        "from": "18",
+        "to": "2",
+        "requires": []
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "2",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "3",
+        "to": "12",
+        "requires": []
+      },
+      {
+        "from": "12",
+        "to": "3",
+        "requires": []
+      },
+      {
+        "from": "3",
+        "to": "16",
+        "requires": []
+      },
+      {
+        "from": "16",
+        "to": "3",
+        "requires": []
+      },
+      {
+        "from": "16",
+        "to": "17",
+        "requires": []
+      },
+      {
+        "from": "17",
+        "to": "16",
+        "requires": []
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "4",
+        "to": "3",
+        "requires": [
+          "k"
+        ]
+      },
+      {
+        "from": "4",
+        "to": "13",
+        "requires": []
+      },
+      {
+        "from": "13",
+        "to": "4",
+        "requires": []
+      },
+      {
+        "from": "4",
+        "to": "5",
+        "requires": [
+          "K"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "4",
+        "requires": [
+          "K"
+        ]
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "requires": []
+      },
+      {
+        "from": "6",
+        "to": "5",
+        "requires": []
+      }
+    ]
+  }
+}
