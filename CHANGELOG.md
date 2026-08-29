@@ -289,21 +289,20 @@ and the candidate set stays identical.
 
 The de-biasing worked on its own terms — unlock choices fell by eight, exactly
 as intended. **The score did not move at all.** Eight cases changed verdict:
-four gains, four losses, net zero, which at n=77 is indistinguishable from
-noise in either direction.
+four gains, four losses, net zero.
 
-The losses are the finding. All four were `spurious_lock` cases where the truth
-*was* an unlock, and in every one the agent switched to `move_key`:
-
-```
-LoZ2_2#2  truth=unlock(16,17)   v1=unlock(16,17)  ->  v2=move_key(16,17)
-LoZ2_4#2  truth=unlock(12,13)   v1=unlock(12,13)  ->  v2=move_key(14,12)
-LoZ_5#2   truth=unlock(10,8)    v1=unlock(10,8)   ->  v2=move_key(9,8)
-LttP_6#3  truth=unlock(15,17)   v1=unlock(15,17)  ->  v2=move_key(17,15)
-```
-
-We did not remove a bias. We swapped one for another. The agent redistributed
-its answers to match the new shape of the menu and got the same number right.
+> **Corrected by Stage 15.** The original write-up read those eight flips as
+> the agent *redistributing* its answers in response to the new ordering, and
+> made much of the fact that all four losses were `spurious_lock` cases. A
+> later control run — the same configuration against itself — also produced
+> **eight** discordant pairs. That churn is the model's own run-to-run
+> variance, not an effect of the intervention, and no conclusion should be
+> drawn from which particular cases moved.
+>
+> What did survive the control: the shift in *what the agent reaches for* is
+> real and reproducible. A repeat run chose 41 unlocks against this arm's 40,
+> nowhere near v1's 48. The intervention reliably changed the choice
+> distribution and reliably failed to change the score.
 
 Even the explicit warnings barely landed: destructive unlocks fell only from 9
 to 8, so the agent kept demolishing walls while being told in the option list
@@ -346,6 +345,10 @@ Gating made it *worse* — 31 against 34 — though exact McNemar on the 17
 discordant pairs gives **p = 0.63**, so the drop is not distinguishable from
 chance. Three arms, three interventions that each reduced the unlock bias
 monotonically (48 → 40 → 36), and a score that never moved outside 31–34.
+
+Stage 15's control puts the 17 discordant pairs in context: an unchanged re-run
+produces 8. So the gate is the one intervention that perturbed per-case
+behaviour beyond noise — and it still did not move the score.
 
 The decomposition is what the arm was really for:
 
@@ -395,6 +398,67 @@ Cost: $0.45.
 
 ---
 
+### Stage 15 — The variance control, and what it invalidates
+
+**Tried.** Every comparison in Stages 13 and 14 was a single run against a
+single run. Sampling parameters are unavailable on current reasoning models, so
+run-to-run variation cannot be tuned away — only measured. So the shipped
+configuration was re-run, **unchanged**, and compared against itself.
+
+**Evidence.**
+
+| pair | intervention | intent | discordant | same repair | p |
+|---|---|---|---|---|---|
+| v2 vs v2-repeat | **none (control)** | 34 → 32 | **8** | 49/77 | 0.73 |
+| v1 vs v2 | rebalanced tools | 34 → 34 | 8 | 46/77 | 1.00 |
+| v2 vs v3 | diagnosis gate | 34 → 31 | 17 | 36/77 | 0.63 |
+
+**Changing nothing moves two cases and flips eight.** The agent chooses the
+identical repair on only **64%** of cases when given identical input — 52% on
+severed corridors.
+
+This forces a correction. Stage 13 reported that rebalancing the tools produced
+"four gains and four losses" and concluded the agent had *redistributed* its
+answers in response. The redistribution was real, but that particular evidence
+was not: **8 discordant pairs is exactly what changing nothing produces.** The
+per-case churn attributed to the intervention was noise, and the inference drawn
+from which four cases flipped does not hold.
+
+What survives the control, because it reproduces:
+
+| run | intent | unlock | move_key |
+|---|---|---|---|
+| v1 unlock-first | 34 | 48 | 2 |
+| v2 balanced | 34 | 40 | 8 |
+| **v2 repeat** | **32** | **41** | **7** |
+| v3 diagnose-first | 31 | 36 | 10 |
+
+The repeat lands at 41 unlocks against v2's 40 and nowhere near v1's 48. **The
+behavioural shift is real and stable; the score effect is zero and the
+case-level churn was noise.** Rebalancing the tools reliably changed what the
+agent reaches for and reliably failed to change how often it is right.
+
+The diagnosis gate is the one intervention that moved per-case behaviour beyond
+noise — 17 discordant against a control of 8 — while still not moving the score.
+
+**Decision — kept as the control it is, and earlier claims corrected in place.**
+Three consequences for how the rest of this document should be read:
+
+1. **The headline carries an error bar.** Two runs of the shipped
+   configuration scored 34/77 and 32/77 — 44.2% and 41.6%. Quote it as roughly
+   42–44%, not as 44.2%.
+2. **The comparison against the baseline survives easily.** `first_valid` is
+   deterministic at 26/77 with zero variance. The agent scored 34 and 32. The
+   margin is 6–8 cases in every run and never in question.
+3. **Single-run A/B on 77 cases cannot resolve a difference of fewer than
+   ~8 cases.** Stages 13 and 14 were underpowered by construction, and no
+   amount of careful reading of individual flipped cases fixes that.
+
+Cost: $0.39. It is the best $0.39 spent in this project — it is the only run
+that told us which of the previous conclusions were real.
+
+---
+
 ## Main failure mode
 
 **The agent knows what broke and cannot work out how to put it back.**
@@ -430,37 +494,44 @@ distance, topology, and key counts.
 
 ## Hot take
 
-**A score that survives every intervention you throw at it is not stable — it
-may just be insensitive to the thing you were changing.**
+**Measure your noise floor before you believe a single thing your A/B told you.**
 
-The architecture is right, and the measurement says so: solver as oracle,
-enumeration as candidate generator, agent spending its whole budget on
-judgment, 44.2% against a 33.8% deterministic baseline that it can never fall
-below on safety. That part held up.
+This project ran three interventions on an agent and wrote up two of them
+before measuring how much the agent disagrees with *itself*. The answer, when
+finally measured, was: on identical input it picks the same repair 64% of the
+time, and an unchanged re-run moves the headline by two cases and flips eight.
 
-What did not survive contact with measurement was the assumption that the
-remaining gap was a *prompting and tooling* problem. Three arms attacked the
-agent's most visible bias — a runaway preference for `unlock` — and drove it
-down monotonically, 48 to 40 to 36 choices out of 77. Intent recovery went 34,
-34, 31. Every intervention changed *which* cases were right. None changed how
-many. The churn was large (17 discordant pairs between the last two arms) and
-the net was noise (p = 0.63).
+Eight. The first intervention also flipped eight. Everything the write-up
+inferred from *which* eight — that the agent had redistributed its answers, that
+the losses clustered revealingly on cases where unlocking was correct — was
+reading tea leaves in its own variance. That correction is in Stage 13, in
+place, because deleting it would hide the most useful thing here.
 
-Instrumenting the diagnosis explained why. The agent identifies the right kind
-of bug 76.6% of the time and produces the right repair 40.3% of the time, and a
-wrong diagnosis is fatal 18 times out of 18. The bottleneck was never
-diagnosis, and it was never which options it saw first. It is that **naming a
-fault and inverting it are different skills**, and every tool we built exposes
-the first: distance, topology, key counts. None exposes what a designer
-actually reads — the rhythm of the place, the fact that this dungeon puts an
-alcove before every gate, so a stranded key *belongs* in the alcove before the
-gate it opens.
+The control cost $0.39 and one re-run. It should have been the *first*
+experiment, not the fifth. A/B testing an agent without a same-config baseline
+is not evidence, and the failure is seductive because the churn is real, the
+cases are individually inspectable, and each flipped case has a story you can
+tell about it.
 
-The generalisable lesson is about method rather than dungeons. If you want to
-know whether an agent is reasoning or pattern-matching against its own
-interface, do not add capability and watch the score go up. **Perturb the
-interface and watch whether the answers move while the score does not.** Ours
-moved constantly and scored identically, three times running. That is a
-signature, and it is only legible because the ground truth was manufactured
-rather than judged — every one of these conclusions rests on knowing the exact
-edit that broke each level, which no amount of prompting could have told us.
+What survived the control is worth more for having survived it:
+
+- **The architecture works.** Solver as oracle, enumeration as candidate
+  generator, agent spending its whole budget on judgment: 42–44% intent
+  recovery against a deterministic 33.8%, a 6–8 case margin in every run, and
+  a solvability gate it cannot fail by construction.
+- **Tool presentation reliably changes behaviour and reliably does not change
+  accuracy.** Unlock choices fell 48 → 40 (41 on repeat) → 36 across the arms,
+  a stable, reproducible shift. The score never left 31–34. You can steer what
+  an agent reaches for far more easily than you can make it right.
+- **The real gap is not diagnosis.** Instrumented, the agent names the right
+  kind of bug 76.6% of the time and produces the right repair 40.3% of the
+  time, and 18 of 18 wrong diagnoses are fatal. Naming a fault and inverting it
+  are different skills, and every tool built here exposes the first: distance,
+  topology, key counts. None exposes what a designer reads — that this dungeon
+  puts an alcove before every gate, so a stranded key *belongs* in the alcove
+  before the gate it opens.
+
+None of which would be checkable at all without manufactured ground truth.
+Seeding the corruption is what turned "which fix is best" from a taste test
+into a number — and, once there was a number, what made it possible to discover
+that the number was noisier than the effects being claimed on top of it.

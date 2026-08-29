@@ -153,6 +153,13 @@ best baseline** — eight more cases, a 31% relative improvement — while never
 shipping an unplayable level. Run with `openai/gpt-5.6-luna`; the full 77-case
 run costs about $0.39 for the agent and $0.27 for the single-prompt baseline.
 
+> **Read that number with its error bar.** The agent is not deterministic —
+> sampling parameters are unavailable on current reasoning models — and an
+> unchanged re-run of the shipped configuration scored **32/77 (41.6%)**. Call
+> it 42–44%. The baseline it is compared against is fully deterministic at
+> 26/77, so the margin is 6–8 cases in every run, but the agent's own figure
+> moves. See Stage 15 in [CHANGELOG.md](CHANGELOG.md).
+
 The single-prompt baseline is the one to look at twice. It has no solver, so it
 is the only method here that ships broken levels: **16 of its 77 "repairs"
 leave the dungeon unwinnable.** It is not merely worse than the agent, it is
@@ -202,8 +209,15 @@ in room 13, beyond the gate" — correct and precise — and then proposed remov
 the gate instead of returning the key.
 
 Three arms drove the unlock bias down monotonically (48 → 40 → 36) and intent
-recovery went 34, 34, 31. Every intervention changed *which* cases were right;
-none changed how many. See [CHANGELOG.md](CHANGELOG.md) Stages 13–14.
+recovery went 34, 34, 31.
+
+Then a control run — the shipped configuration against itself, changing nothing
+— scored 32/77 and flipped **eight** cases, the same number the first
+intervention flipped. So the behavioural shift is real and reproducible (a
+repeat run chose 41 unlocks, nowhere near 48), and the case-level churn that
+first looked like evidence was the agent's own variance. **You can steer what
+an agent reaches for far more easily than you can make it right.**
+See [CHANGELOG.md](CHANGELOG.md) Stages 13–15.
 
 ## Reproducing
 

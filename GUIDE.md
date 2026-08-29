@@ -588,15 +588,37 @@ Gating also removed a lucky path: ungated, the agent could stumble onto the
 right repair without reasoning to it. **The arm that reasons better scores
 worse.**
 
-Across three arms the unlock bias fell monotonically (48 → 40 → 36) and intent
-recovery went 34, 34, 31. Every intervention changed which cases were right;
-none changed how many.
+### The control that had to come first
 
-The practical lesson for anyone building this kind of system: **perturb your
-tool presentation and re-run.** If the answers churn while the score holds
-still, you have measured how much of your result is reasoning and how much is
-layout. And instrument the intermediate step — the gap between 76.6% and 40.3%
-is invisible if you only score the final answer.
+Across three arms the unlock bias fell monotonically (48 → 40 → 36) and intent
+recovery went 34, 34, 31. Only after all three was the obvious control run: the
+shipped configuration against itself, changing nothing.
+
+| pair | intervention | intent | discordant | same repair |
+|---|---|---|---|---|
+| v2 vs v2-repeat | **none** | 34 → 32 | **8** | 49/77 |
+| v1 vs v2 | rebalanced tools | 34 → 34 | 8 | 46/77 |
+| v2 vs v3 | diagnosis gate | 34 → 31 | 17 | 36/77 |
+
+**The agent picks the same repair on only 64% of cases given identical input.**
+Changing nothing flips eight cases — the same number the first intervention
+flipped. Any conclusion drawn from *which* cases moved between v1 and v2 was
+reading the model's own variance.
+
+What survives, because it reproduces: the repeat chose 41 unlocks against v2's
+40 and nowhere near v1's 48. Tool presentation reliably changes what the agent
+reaches for and reliably fails to change how often it is right.
+
+The practical lessons, in order of how much they would have saved us:
+
+1. **Run the same-config control first.** Not fifth. Without a noise floor, an
+   A/B on 77 cases cannot resolve anything smaller than about eight cases, and
+   every individually-inspectable flipped case will still have a plausible
+   story attached to it.
+2. **Perturb the presentation and watch the distribution, not the score.** The
+   choice mix moved reproducibly; the score never did.
+3. **Instrument the intermediate step.** The gap between 76.6% diagnosis and
+   40.3% repair is invisible if you only score the final answer.
 
 ## 10. Where to take it next
 
