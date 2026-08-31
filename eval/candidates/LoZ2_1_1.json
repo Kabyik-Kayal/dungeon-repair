@@ -1,0 +1,72 @@
+{
+  "case_id": "LoZ2_1#1",
+  "considered": 158,
+  "seconds": 0.0054,
+  "verified": [
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "2",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "3",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "4",
+      "b": "5"
+    },
+    {
+      "kind": "add_door",
+      "a": "4",
+      "b": "6"
+    },
+    {
+      "kind": "add_door",
+      "a": "4",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "4",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "10",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "14",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "4"
+    }
+  ]
+}

@@ -1,0 +1,582 @@
+{
+  "case_id": "LttP_8#3",
+  "considered": 564,
+  "seconds": 0.083,
+  "verified": [
+    {
+      "kind": "unlock",
+      "a": "12",
+      "b": "14"
+    },
+    {
+      "kind": "unlock",
+      "a": "15",
+      "b": "18"
+    },
+    {
+      "kind": "move_key",
+      "a": "24",
+      "b": "9"
+    },
+    {
+      "kind": "move_key",
+      "a": "24",
+      "b": "11"
+    },
+    {
+      "kind": "move_key",
+      "a": "24",
+      "b": "12"
+    },
+    {
+      "kind": "move_key",
+      "a": "24",
+      "b": "15"
+    },
+    {
+      "kind": "move_key",
+      "a": "24",
+      "b": "16"
+    },
+    {
+      "kind": "move_key",
+      "a": "30",
+      "b": "9"
+    },
+    {
+      "kind": "move_key",
+      "a": "30",
+      "b": "11"
+    },
+    {
+      "kind": "move_key",
+      "a": "30",
+      "b": "12"
+    },
+    {
+      "kind": "move_key",
+      "a": "30",
+      "b": "15"
+    },
+    {
+      "kind": "move_key",
+      "a": "30",
+      "b": "16"
+    },
+    {
+      "kind": "add_key",
+      "a": "9",
+      "b": ""
+    },
+    {
+      "kind": "add_key",
+      "a": "11",
+      "b": ""
+    },
+    {
+      "kind": "add_key",
+      "a": "12",
+      "b": ""
+    },
+    {
+      "kind": "add_key",
+      "a": "15",
+      "b": ""
+    },
+    {
+      "kind": "add_key",
+      "a": "16",
+      "b": ""
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "11"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "12"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "15"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "16"
+    },
+    {
+      "kind": "add_door",
+      "a": "3",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "3"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "3"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "3"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "3"
+    },
+    {
+      "kind": "add_door",
+      "a": "4",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "5",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "5"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "5"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "5"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "5"
+    },
+    {
+      "kind": "add_door",
+      "a": "7",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "7"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "7"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "7"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "7"
+    },
+    {
+      "kind": "add_door",
+      "a": "8",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "10",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "13",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "14",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "17",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "18",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "19",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "20",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "21",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "22",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "23",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "24",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "25",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "26",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "30",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "10",
+      "b": "11"
+    },
+    {
+      "kind": "add_door",
+      "a": "10",
+      "b": "12"
+    },
+    {
+      "kind": "add_door",
+      "a": "10",
+      "b": "15"
+    },
+    {
+      "kind": "add_door",
+      "a": "10",
+      "b": "16"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "13"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "14"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "17"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "18"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "19"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "20"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "21"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "22"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "23"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "24"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "25"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "26"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "30"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "13"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "17"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "18"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "19"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "20"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "21"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "22"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "23"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "24"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "25"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "26"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "30"
+    },
+    {
+      "kind": "add_door",
+      "a": "13",
+      "b": "15"
+    },
+    {
+      "kind": "add_door",
+      "a": "13",
+      "b": "16"
+    },
+    {
+      "kind": "add_door",
+      "a": "14",
+      "b": "15"
+    },
+    {
+      "kind": "add_door",
+      "a": "14",
+      "b": "16"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "17"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "19"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "20"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "21"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "22"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "23"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "24"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "25"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "26"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "30"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "17"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "18"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "19"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "20"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "21"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "22"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "23"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "24"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "25"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "26"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "30"
+    }
+  ]
+}

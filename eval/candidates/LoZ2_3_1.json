@@ -1,0 +1,87 @@
+{
+  "case_id": "LoZ2_3#1",
+  "considered": 114,
+  "seconds": 0.004,
+  "verified": [
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "3",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "3",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "4",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "4",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "5",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "5",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "7",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "7",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "10",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "10",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "9"
+    }
+  ]
+}

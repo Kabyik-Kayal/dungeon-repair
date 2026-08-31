@@ -98,6 +98,12 @@ same seed gives the same cases, asserted by
 The repository ships these case files, so this step reproduces them rather than
 creating them for the first time. `git status` should stay clean.
 
+`eval/candidates/` — the verified repair for every case, enumerated — ships too,
+for the same reason. It is deterministic output of the files above, and without
+it the first `pytest` spends 109s rebuilding it. **Nothing validates the cache
+against the solver**, so delete the directory if you change `solver.py` or the
+edit vocabulary.
+
 ## 5. Run the deterministic methods
 
 ```bash

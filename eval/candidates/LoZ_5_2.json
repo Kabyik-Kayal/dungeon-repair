@@ -1,0 +1,122 @@
+{
+  "case_id": "LoZ_5#2",
+  "considered": 387,
+  "seconds": 0.0237,
+  "verified": [
+    {
+      "kind": "unlock",
+      "a": "10",
+      "b": "8"
+    },
+    {
+      "kind": "move_key",
+      "a": "9",
+      "b": "8"
+    },
+    {
+      "kind": "move_key",
+      "a": "17",
+      "b": "8"
+    },
+    {
+      "kind": "move_key",
+      "a": "20",
+      "b": "8"
+    },
+    {
+      "kind": "add_key",
+      "a": "8",
+      "b": ""
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "3",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "4",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "5",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "7",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "8",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "13",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "14",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "15",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "16",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "17",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "19",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "20",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "21",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "22",
+      "b": "8"
+    }
+  ]
+}

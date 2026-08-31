@@ -1,0 +1,162 @@
+{
+  "case_id": "LoZ2_4#1",
+  "considered": 738,
+  "seconds": 0.0434,
+  "verified": [
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "12"
+    },
+    {
+      "kind": "add_door",
+      "a": "1",
+      "b": "12"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "2"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "3"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "5"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "6"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "7"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "11",
+      "b": "12"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "13"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "14"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "15"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "16"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "17"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "18"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "19"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "20"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "21"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "22"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "23"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "25"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "27"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "28"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "29"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "30"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "31"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "32"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "33"
+    },
+    {
+      "kind": "add_door",
+      "a": "12",
+      "b": "34"
+    }
+  ]
+}

@@ -17,5 +17,9 @@ build/
 eval/scratch/
 .DS_Store
 
-# verified-candidate cache: deterministic, regenerated on demand
-eval/candidates/
+# The verified-candidate cache IS committed. It is deterministic output of
+# committed inputs, it is 1 MB, and without it a fresh clone spends 109s
+# regenerating it before the tests can run -- which would make the "~40s"
+# in docs/REPRODUCE.md false for the one person it matters to. Delete the
+# directory to force regeneration if you change the solver or the edit
+# vocabulary: nothing validates the cache against them.

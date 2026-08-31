@@ -1,0 +1,167 @@
+{
+  "case_id": "LoZ2_7#2",
+  "considered": 539,
+  "seconds": 0.0388,
+  "verified": [
+    {
+      "kind": "unlock",
+      "a": "0",
+      "b": "1"
+    },
+    {
+      "kind": "move_key",
+      "a": "9",
+      "b": "0"
+    },
+    {
+      "kind": "move_key",
+      "a": "28",
+      "b": "0"
+    },
+    {
+      "kind": "add_key",
+      "a": "0",
+      "b": ""
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "2"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "3"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "4"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "5"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "6"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "7"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "8"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "9"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "10"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "11"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "12"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "14"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "15"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "16"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "17"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "18"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "19"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "20"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "21"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "22"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "23"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "24"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "25"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "26"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "27"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "28"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "29"
+    },
+    {
+      "kind": "add_door",
+      "a": "0",
+      "b": "30"
+    }
+  ]
+}
