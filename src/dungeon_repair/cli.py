@@ -99,6 +99,8 @@ def cmd_run(args: argparse.Namespace) -> int:
         workers=args.workers,
         on_result=progress,
         diagnose_first=getattr(args, "diagnose_first", False),
+        route=getattr(args, "route", False),
+        memory=getattr(args, "memory", False),
     )
     summary = save(args.method, attempts, args.results)
     print()
@@ -301,6 +303,16 @@ def main(argv: list[str] | None = None) -> int:
         "--diagnose-first",
         action="store_true",
         help="agent must commit to a hypothesis before it may browse repairs",
+    )
+    p.add_argument(
+        "--route",
+        action="store_true",
+        help="tell the agent what the shape of the verified set already rules out",
+    )
+    p.add_argument(
+        "--memory",
+        action="store_true",
+        help="give the agent design motifs mined from the designer's other dungeons",
     )
     p.set_defaults(func=cmd_run)
 

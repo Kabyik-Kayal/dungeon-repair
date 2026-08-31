@@ -15,6 +15,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ..candidates import CandidateSet, verified_candidates
+from ..memory import DesignMemory
+from ..route import forced, touches_keys
 from ..edits import ADD_DOOR, ADD_KEY, Edit, KINDS, MOVE_KEY, UNLOCK, parse_edit
 from ..level import KEY_LOCKED, Level, SMALL_KEY, describe_passage, describe_room
 from ..solver import solve
@@ -62,7 +64,16 @@ class Toolbox:
         level: Level,
         candidates: CandidateSet | None = None,
         require_hypothesis: bool = False,
+        memory: DesignMemory | None = None,
+        signal_shape: bool = False,
     ):
+        #: Surface what the shape of the verified set already rules out. Off by
+        #: default so the shipped headline stays reproducible.
+        self.signal_shape = signal_shape
+        #: Motifs mined from the designer's *other* dungeons. Optional, and
+        #: never consulted for correctness -- it annotates options and answers
+        #: `design_rhythm`, which is the one question the other tools cannot.
+        self.memory = memory
         #: When True, `repair_options`, `compare` and `submit` refuse until the
         #: agent has committed to a hypothesis. Off by default: it makes the
         #: agent more principled and, measurably, slightly less accurate --
@@ -82,6 +93,17 @@ class Toolbox:
         self._distances = {
             room: distances_from(level, room) for room in level.rooms
         }
+
+    @property
+    def rhythm_available(self) -> bool:
+        """Is the design memory of any possible use on this case?
+
+        The motifs are about where a small key sits. When no key edit verifies,
+        no key was displaced, so the tool cannot inform the answer -- and two
+        runs showed it costing accuracy on exactly those cases while helping
+        elsewhere. Offering a tool that cannot apply is not neutral.
+        """
+        return bool(self.memory) and touches_keys(self.candidates)
 
     # -- schemas ------------------------------------------------------------
     def schemas(self) -> list[dict]:
@@ -178,6 +200,19 @@ class Toolbox:
                 },
                 required=["options"],
             ),
+            *(
+                [
+                    _tool(
+                        "design_rhythm",
+                        "What the same designers' other dungeons do: where small "
+                        "keys tend to sit, and how strong each tendency actually "
+                        "is. Measured with this dungeon held out.",
+                        {},
+                    )
+                ]
+                if self.rhythm_available
+                else []
+            ),
             _tool(
                 "room_detail",
                 "Look up specific rooms: contents, every door on them, and how "
@@ -215,6 +250,7 @@ class Toolbox:
             "hypothesise": self.hypothesise,
             "repair_options": self.repair_options,
             "compare": self.compare,
+            "design_rhythm": self.design_rhythm,
             "room_detail": self.room_detail,
             "submit": self.submit,
         }.get(name)
@@ -248,7 +284,41 @@ class Toolbox:
             if any(KEY_LOCKED in p.requires for p in self.level.passages_of(door))
         )
         lines.append(f"Key economy: {keys} small key(s) for {key_doors} key-locked door(s)")
+        lines.extend(self._candidate_shape())
         return "\n".join(lines)
+
+    def _candidate_shape(self) -> list[str]:
+        """What the shape of the verified set already rules out.
+
+        Both facts are properties of the candidate set, not hints at an answer:
+        they say which corruptions are *impossible*, which the option list
+        implies but never states. Measured on the 77-case set, the first is
+        right 30 times in 31 and the second 21 in 23.
+        """
+        if not self.signal_shape:
+            return []
+        # The doors-only note ("this must be a dropped corridor") was measured
+        # and removed. It was true, and it cost accuracy on exactly the cases it
+        # described: 9 -> 7, 6, 7 across three runs. Handing the agent the
+        # conclusion appears to stop it doing the work that produced the
+        # conclusion. Only the sole-unlock note survives.
+        out = []
+        decided, _ = forced(self.candidates)
+        if decided is not None:
+            out.append(
+                f"Note: the key economy is repairable, yet exactly one door can be "
+                f"unlocked -- {_fmt_edit(decided)}. A dropped corridor cannot leave "
+                f"that shape, so a lock was most likely added that should not exist."
+            )
+        return out
+
+    def design_rhythm(self) -> str:
+        if not self.rhythm_available:
+            raise ToolError(
+                "no design memory applies here: no key edit repairs this level, "
+                "so no key was displaced"
+            )
+        return self.memory.summary()
 
     def hypothesise(self, repair_kind: str, rooms: list[str], reasoning: str) -> str:
         if repair_kind not in KINDS:
@@ -329,7 +399,8 @@ class Toolbox:
         ]
         for edit in shown:
             lines.append(
-                f"  {_fmt_edit(edit):<34} {edit.describe()}{self._caveat(edit)}"
+                f"  {_fmt_edit(edit):<34} {edit.describe()}"
+                f"{self._caveat(edit)}{self._rhythm(edit)}"
             )
         if len(options) > len(shown):
             lines.append(
@@ -355,6 +426,16 @@ class Toolbox:
         if not beyond:
             return ""
         return f"  [WARNING: this door is {describe_passage(beyond)} -- unlocking removes that]"
+
+    def _rhythm(self, edit: Edit) -> str:
+        """How the destination room matches the designer's habits.
+
+        Only for `move_key`: the motifs are about where a key sits, and
+        attaching them to a door edit would be dressing noise up as evidence.
+        """
+        if not self.memory or edit.kind != MOVE_KEY or not edit.b:
+            return ""
+        return self.memory.annotate(self.level, edit.b)
 
     def compare(self, options: list[dict]) -> str:
         self._require_hypothesis("compare")
@@ -465,6 +546,12 @@ class Toolbox:
             f"  key economy after: {keys_after} key(s) for {locked_after} key-locked "
             f"door(s) (was {keys_before} keys)"
         )
+        if self.memory and edit.kind == MOVE_KEY and edit.b:
+            found = self.memory.matches(self.level, edit.b)
+            lines.append(
+                f"  room {edit.b} vs the designer's habits: "
+                + ("; ".join(found) if found else "matches none of the measured motifs")
+            )
         if result.solvable:
             lines.append(
                 f"  winning route: {len(result.route)} rooms, "

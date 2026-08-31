@@ -91,3 +91,24 @@ Work in two phases, and the tools enforce it. First gather evidence with \
 The point is to form a view from the evidence rather than from whichever \
 repair happens to be listed first. You may revise the hypothesis afterwards if \
 the evidence turns against it."""
+
+
+#: Appended when a design memory is loaded. It says what the motifs are worth,
+#: because the measured lifts are modest and an agent told "keys sit with
+#: enemies" without the number will over-trust it. Stage 16 measured the
+#: motifs as filters that halve the field and rank nothing.
+RHYTHM = """
+
+You also have `design_rhythm`: what the same designers' other dungeons do with
+small keys, measured with this dungeon held out. Two things about it.
+
+It is evidence, not an answer. Every tendency is printed with its lift, and the
+strongest is about 1.45 -- enough to make a room a better guess than its
+neighbours, nowhere near enough to settle the question on its own. A room that
+matches every motif can still be the wrong room.
+
+It is worth most where you are weakest. Deciding which room a stray key came
+from is the one question the topology tools cannot help with at all: they know
+distance, connectivity and key counts, and none of those say where a key
+belongs. Use the habits to narrow the field, then argue from the dungeon in
+front of you."""

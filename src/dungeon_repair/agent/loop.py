@@ -19,9 +19,10 @@ from typing import Callable
 from ..candidates import CandidateSet
 from ..corrupt import Case
 from ..llm import Client
+from ..memory import DesignMemory
 from ..metrics import Attempt, score
 from ..trace import Trace
-from .prompts import CHECKPOINT, DIAGNOSE_FIRST, NUDGE, SYSTEM, TASK
+from .prompts import CHECKPOINT, DIAGNOSE_FIRST, NUDGE, RHYTHM, SYSTEM, TASK
 from .tools import Toolbox, ToolError
 
 METHOD = "agent"
@@ -36,12 +37,22 @@ def run(
     max_steps: int = MAX_STEPS,
     approve: Callable[[str], bool] | None = None,
     diagnose_first: bool = False,
+    route: bool = False,
+    memory: DesignMemory | None = None,
     **_: object,
 ) -> Attempt:
     client = client or Client()
     started = time.perf_counter()
-    toolbox = Toolbox(case.broken, candidates, require_hypothesis=diagnose_first)
+    toolbox = Toolbox(
+        case.broken,
+        candidates,
+        require_hypothesis=diagnose_first,
+        memory=memory,
+        signal_shape=route,
+    )
     system = SYSTEM + DIAGNOSE_FIRST if diagnose_first else SYSTEM
+    if toolbox.rhythm_available:
+        system += RHYTHM
     task = TASK.format(outline=case.broken.outline())
     if trace:
         trace.instructions(system, task)
@@ -124,6 +135,9 @@ def run(
         extra={
             "steps": steps,
             "diagnose_first": diagnose_first,
+            "route": route,
+            "memory": bool(memory),
+            "decided_by": "agent",
             "verified_options": len(toolbox.candidates),
             "enumeration_seconds": round(toolbox.candidates.seconds, 3),
             # What it believed before it saw a single repair option. Scored

@@ -14,6 +14,7 @@ from .candidates import CandidateSet, verified_candidates
 from .corrupt import Case
 from .edits import Edit
 from .llm import Client
+from .memory import DesignMemory, mine
 from .metrics import Attempt, score, summarise, write_attempts
 from .trace import open_trace
 
@@ -66,12 +67,26 @@ def run_method(
     workers: int = 1,
     on_result: Callable[[Attempt], None] | None = None,
     diagnose_first: bool = False,
+    route: bool = False,
+    memory: bool = False,
 ) -> list[Attempt]:
     if method not in METHODS:
         raise SystemExit(f"unknown method {method!r}; expected one of {', '.join(METHODS)}")
     handler = METHODS[method]
     cases = list(cases)
     run_id = time.strftime("%Y%m%d-%H%M%S")
+
+    # One design memory per held-out dungeon, mined from the originals of every
+    # *other* dungeon in the set. Holding the level out is what makes this
+    # evidence rather than leakage, and the cache keeps 77 cases from re-mining
+    # the same 32 corpora.
+    corpus = list({case.original.id: case.original for case in cases}.values())
+    memories: dict[str, DesignMemory] = {}
+
+    def memory_for(case: Case) -> DesignMemory:
+        if case.source_level not in memories:
+            memories[case.source_level] = mine(corpus, exclude=case.source_level)
+        return memories[case.source_level]
 
     def one(case: Case) -> Attempt:
         kwargs: dict = {}
@@ -84,6 +99,9 @@ def run_method(
         if method == "agent":
             kwargs["candidates"] = candidates_for(case, cache_dir)
             kwargs["diagnose_first"] = diagnose_first
+            kwargs["route"] = route
+            if memory:
+                kwargs["memory"] = memory_for(case)
         try:
             attempt = handler(case, **kwargs)
         except Exception as exc:  # noqa: BLE001 - one bad case must not kill a run

@@ -5,6 +5,12 @@ description = "Playability verification and intent-preserving repair for procedu
 requires-python = ">=3.11"
 dependencies = [
     "litellm>=1.63.0",
+    # litellm imports tenacity on its retry path but does not declare it, so a
+    # clean install works until the first request that needs retrying -- which
+    # in practice means it works until the first rate limit, then takes out
+    # every remaining case in the run. Pinned here rather than reported
+    # upstream-and-hoped-for.
+    "tenacity>=8.0",
 ]
 
 [project.optional-dependencies]
