@@ -1,0 +1,31 @@
+{
+  "method": "agent",
+  "cases": 77,
+  "solvable": 77,
+  "solvable_rate": 1.0,
+  "intent_hits": 34,
+  "intent_rate": 0.44155844155844154,
+  "layout_mean": 0.9716398479470838,
+  "seconds_mean": 33.60286013151936,
+  "seconds_total": 2587.4202301269906,
+  "cost_usd_total": 0.3848676,
+  "cost_usd_mean": 0.004998280519480519,
+  "errors": 0,
+  "by_kind": {
+    "displaced_key": {
+      "n": 15,
+      "intent": 1,
+      "rate": 0.06666666666666667
+    },
+    "severed_corridor": {
+      "n": 31,
+      "intent": 7,
+      "rate": 0.22580645161290322
+    },
+    "spurious_lock": {
+      "n": 31,
+      "intent": 26,
+      "rate": 0.8387096774193549
+    }
+  }
+}
