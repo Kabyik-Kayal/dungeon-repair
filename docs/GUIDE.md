@@ -3,11 +3,10 @@
 This is the long explanation of the project — what it does, how it works, why
 it's built this way, and what to read if you want to go deeper on any of it.
 
-The other files here have narrower jobs. The [README](README.md) is the short
-pitch and the numbers. The [changelog](CHANGELOG.md) is the diary: what we
-tried, in order, and what the evidence said. [REPRODUCE.md](REPRODUCE.md) is
-the list of commands. [docs/DATA_NOTES.md](docs/DATA_NOTES.md) covers the
-quirks of the dataset. This file is the one that explains how the thing
+The other files here have narrower jobs. The [README](../README.md) is the
+short pitch and the numbers. The [changelog](CHANGELOG.md) is the diary: what
+we tried, in order, and what the evidence said. [REPRODUCE.md](REPRODUCE.md)
+is the list of commands. This file is the one that explains how the thing
 actually works.
 
 ---
@@ -737,7 +736,7 @@ question outright — and there may not be many, which is itself the finding.
 connects to what, not where anything is. We tried to recover the geometry from
 the tile maps that ship alongside the graphs; they turn out to be a different
 transcription that disagrees on room count in 17 of 18 dungeons, so that door is
-closed (see [docs/DATA_NOTES.md](docs/DATA_NOTES.md)).
+closed.
 
 We then built coordinate-carrying dungeons from scratch to find out what
 geometry would actually be worth. Requiring a corridor to join physically

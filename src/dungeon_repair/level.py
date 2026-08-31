@@ -38,7 +38,7 @@ IMPASSABLE = "s"  # legend: "visible, impassable"
 
 #: Undocumented symbols that appear in the corpus. The legend does not define
 #: them; they are carried through as opaque room contents and never gate a
-#: passage. See docs/DATA_NOTES.md.
+#: passage.
 UNDOCUMENTED = frozenset({"i", "m", "O"})
 
 SWITCH_PREFIX = "S"

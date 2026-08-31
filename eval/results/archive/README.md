@@ -1,6 +1,6 @@
 # Archived evaluation arms
 
-Every experiment in [CHANGELOG.md](../../../CHANGELOG.md) that produced a full
+Every experiment in [CHANGELOG.md](../../../docs/CHANGELOG.md) that produced a full
 77-case run, kept so each claim in the changelog can be checked against the rows
 that produced it. `../agent.jsonl` is the shipped default and is identical in
 configuration to `agent_v2_balanced` here.

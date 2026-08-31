@@ -104,9 +104,10 @@ leaves that logic untested.
 
 31 of the 38 verify as winnable. The other 7 are transcription errors in the
 corpus, not solver bugs: `LttP_3` encodes one small key against three
-key-locked doors, all on the critical path. The evaluation set is built from
-the 31 that verify. Surfacing real errors in a published research dataset is a
-side effect of having a solver worth trusting; see [docs/DATA_NOTES.md](docs/DATA_NOTES.md).
+key-locked doors, all on the critical path — no ordering of key spends finishes
+it, and the shipped game plainly does. The evaluation set is built from the 31
+that verify. Surfacing real errors in a published research dataset is a side
+effect of having a solver worth trusting.
 
 ## The evaluation
 
@@ -164,7 +165,7 @@ run costs about $0.39 for the agent and $0.27 for the single-prompt baseline.
 > against is fully deterministic at 26/77, so the margin is 6–10 cases in every
 > run, but the agent's own number moves by up to four. An unchanged
 > configuration re-run against itself flips eight cases and agrees with itself
-> on about 60%. See Stages 15–16 in [CHANGELOG.md](CHANGELOG.md).
+> on about 60%. See Stages 15–16 in [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
 The single-prompt baseline is the one to look at twice. It has no solver, so it
 is the only method here that ships broken levels: **16 of its 77 "repairs"
@@ -240,7 +241,7 @@ intervention flipped. So the behavioural shift is real and reproducible (a
 repeat run chose 41 unlocks, nowhere near 48), and the case-level churn that
 first looked like evidence was the agent's own variance. **You can steer what
 an agent reaches for far more easily than you can make it right.**
-See [CHANGELOG.md](CHANGELOG.md) Stages 13–15.
+See [docs/CHANGELOG.md](docs/CHANGELOG.md) Stages 13–15.
 
 ### Then we tried giving it what it was missing (Stage 16)
 
@@ -266,7 +267,7 @@ floor already measured at eight flipped cases, and the design memory did not
 shift the displaced key at all.
 
 Two predictions were registered in advance and both were falsified — the write-up
-in [CHANGELOG.md](CHANGELOG.md) Stage 16 keeps them. What the seven runs
+in [docs/CHANGELOG.md](docs/CHANGELOG.md) Stage 16 keeps them. What the seven runs
 together say is narrower and more useful than the score:
 
 > **The agent converts facts and ignores hints.** A note that determines the
@@ -276,19 +277,19 @@ together say is narrower and more useful than the score:
 
 ## Reproducing
 
-See [REPRODUCE.md](REPRODUCE.md) for clean-environment setup, exact commands,
+See [docs/REPRODUCE.md](docs/REPRODUCE.md) for clean-environment setup, exact commands,
 expected output, runtime, and cost.
 
 ## Understanding it
 
-[GUIDE.md](GUIDE.md) is the deep explanation: architecture, a module-by-module
+[docs/GUIDE.md](docs/GUIDE.md) is the deep explanation: architecture, a module-by-module
 walkthrough, the solver's state design, every significant decision with the
 alternative it displaced, and a reading list for the fields this borrows from
 (procedural content generation, automated program repair, mutation testing).
 
 ## Improvement changelog
 
-[CHANGELOG.md](CHANGELOG.md) records what was tried at each stage, the evidence,
+[docs/CHANGELOG.md](docs/CHANGELOG.md) records what was tried at each stage, the evidence,
 and what was kept, revised, or thrown out — including the experiment that
 killed the original design, and the one that made the baseline harder to beat.
 
@@ -321,7 +322,7 @@ Everything in `src/`, `tests/`, `scripts/` and the documentation was written
 during the hackathon, including `route.py` and `memory.py` (Stage 16) and the
 44 tests, none of which need an API key. Pre-existing: the VGLC corpus (MIT, fetched not vendored),
 and the libraries in `pyproject.toml`. Claude Code was used as the coding agent
-throughout; see [CHANGELOG.md](CHANGELOG.md) for how, and `eval/traces/` for the
+throughout; see [docs/CHANGELOG.md](docs/CHANGELOG.md) for how, and `eval/traces/` for the
 repair agent's own **539 trajectories across seven full runs**, indexed in
 [`eval/results/archive/README.md`](eval/results/archive/README.md).
 

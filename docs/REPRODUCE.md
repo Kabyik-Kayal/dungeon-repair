@@ -215,7 +215,7 @@ trajectory per case to `eval/traces/`.
 
 Every earlier arm is kept rather than overwritten. `eval/results/archive/` holds
 one `.jsonl` and one `.summary.json` per run with a
-[README](eval/results/archive/README.md) naming each arm, its score and the
+[README](../eval/results/archive/README.md) naming each arm, its score and the
 changelog stage it belongs to; the matching trajectories are in
 `eval/traces/archive/<arm>/`. Ten full runs are archived, seven of them the
 agent.

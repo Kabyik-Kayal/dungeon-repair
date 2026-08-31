@@ -77,7 +77,7 @@ class Toolbox:
         #: When True, `repair_options`, `compare` and `submit` refuse until the
         #: agent has committed to a hypothesis. Off by default: it makes the
         #: agent more principled and, measurably, slightly less accurate --
-        #: see Stage 14 in CHANGELOG.md. Kept so the arm stays reproducible.
+        #: see Stage 14 in docs/CHANGELOG.md. Kept so the arm stays reproducible.
         self.require_hypothesis = require_hypothesis
         self.level = level
         self.candidates = candidates or verified_candidates(level)
