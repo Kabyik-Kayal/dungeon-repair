@@ -3,7 +3,7 @@
 Written as the work happened, not reconstructed afterwards. Every row's
 evidence is a command in this repository or a file under `eval/`.
 
-All twelve stages are complete; every number below was produced by a command in
+All sixteen stages are complete; every number below was produced by a command in
 this repository, and the results it cites live in `eval/results/`.
 
 ---
@@ -446,7 +446,8 @@ Three consequences for how the rest of this document should be read:
 
 1. **The headline carries an error bar.** Two runs of the shipped
    configuration scored 34/77 and 32/77 — 44.2% and 41.6%. Quote it as roughly
-   42–44%, not as 44.2%.
+   42–44%, not as 44.2%. *(Stage 16 widened this: seven runs now span 32–36,
+   so the range to quote is 42–47%.)*
 2. **The comparison against the baseline survives easily.** `first_valid` is
    deterministic at 26/77 with zero variance. The agent scored 34 and 32. The
    margin is 6–8 cases in every run and never in question.
@@ -456,6 +457,115 @@ Three consequences for how the rest of this document should be read:
 
 Cost: $0.39. It is the best $0.39 spent in this project — it is the only run
 that told us which of the previous conclusions were real.
+
+---
+
+### Stage 16 — Giving the agent what it lacked, and the one thing that stuck
+
+**Tried.** Stage 14 left the failure precisely located: the agent names the
+right kind of bug 76.6% of the time and produces the right repair 40.3% of the
+time, and the tools expose distance, topology and key counts but nothing about
+what a designer reads. So: measure the ceiling first, then build the two things
+the diagnosis actually implies -- a **memory** of the designers' habits mined
+from the *other* dungeons, and a way to tell the agent what the shape of the
+verified set already rules out.
+
+**Evidence -- first, where the headroom is not.** Before building anything,
+three independent attempts to beat the agent deterministically, all at $0:
+
+| method, on `severed_corridor` (n=31) | intent |
+|---|---|
+| enumerate, first valid | 1 |
+| learned link prediction, leave-one-level-out logistic | 2 |
+| hand-built structural ranker (boundary, id gap, degree) | 6 |
+| **the agent** | **9** |
+
+A perfect kind classifier plus the best ranker scores **33/77**, the same as the
+agent. A ranked shortlist has to run to **twenty** options before it contains
+the truth 86% of the time. And the reason is structural: **27 of 31 severed
+corridors have their endpoints in different connected components**, so every
+path-based link-prediction feature is identically zero, and room ids are not
+geometry -- prefix-connectivity fails 28.6% of the time in the originals.
+Recovering real geometry from VGLC's tile maps was tried and abandoned: the
+best segmentation still disagrees with the graphs on room count in 17 of 18
+dungeons. Corridors and displaced keys are not an engineering shortfall. The
+information is not in the corpus.
+
+**Evidence -- what the design memory actually says.** The changelog's own
+explanation of the failure was that keys sit in an alcove before the gate they
+open. Measured across the corpus, that is **false**: 102 of 127 keys sit beyond
+their nearest locked door, not in front of it. What is true is duller -- 76% of
+key rooms hold an enemy against a 53% base rate (lift 1.45), 28% are dead ends
+against 20% (lift 1.43), and key items and small keys almost never share a room
+(lift 0.24). Crucially the motifs **narrow but do not rank**: scored as a
+log-prior they recover 2 of 15 displaced keys, no better than plain topology,
+while "the home room holds an enemy" keeps 13 of 24 candidates and retains the
+right one 13 times in 15. So the memory ships as evidence handed to the agent
+with its own lift printed beside it, not as a ranker. Every statistic is mined
+with the dungeon under repair held out.
+
+**Evidence -- five runs.** The agent still decides every case; nothing bypasses
+it. `design_rhythm` was called in 77 of 77 trajectories.
+
+| run | total | sole-unlock /23 | doors-only /30 | rest /24 | key | sev | lock |
+|---|---|---|---|---|---|---|---|
+| shipped | 34 | 18 | 9 | 7 | 1 | 9 | 24 |
+| control (Stage 15) | 32 | 19 | 9 | 4 | 0 | 9 | 23 |
+| memory, both notes | 35 | **21** | 7 | 7 | 2 | 7 | 26 |
+| memory, both notes | 34 | **21** | 6 | 7 | 1 | 6 | 27 |
+| memory gated to key cases | 34 | **21** | 7 | 6 | 1 | 7 | 26 |
+| unlock note only | **36** | **21** | 9 | 6 | 3 | 9 | 24 |
+| unlock note only, repeat | 34 | **21** | 7 | 6 | 1 | 7 | 26 |
+
+**Two predictions were registered in advance and both were wrong.** The first:
+that offering `design_rhythm` on doors-only cases -- where no key edit is even
+legal -- was costing the corridor accuracy, so gating it would restore 9.
+Gating it left doors-only at 7. The second: that the *doors-only note* was the
+cause, so removing it would restore 9 and lift the total to ~37. The first run
+without it scored 36 with doors-only back at 9, and the repeat scored 34 with
+doors-only at 7. The 9 was noise, and so was the 36.
+
+**Decision -- one finding kept, everything else reported as null.**
+
+What reproduces, across five runs of the arm against two of the baseline, with
+no overlap between them: **the sole-unlock note takes that subset from 18 and
+19 to 21, 21, 21, 21, 21.** Twenty-one of twenty-three is the deterministic
+ceiling of the rule -- the other two are displaced keys the rule mislabels. The
+agent, handed one decisive fact, reaches the ceiling of the rule that produced
+it, five times out of five, without ever being bypassed.
+
+Nothing else survived. The headline is 35, 34, 34, 36, 34 against 34 and 32:
+means of 34.6 and 33, well inside a noise floor this project has already
+measured at eight flipped cases. Displaced keys went 2, 1, 1, 3, 1 against 1
+and 0 -- the memory did not move the failure it was built for. The final
+configuration against itself: **8 discordant, identical repair on 61%.**
+
+The pattern across all seven runs is sharper than the score:
+
+> **The agent converts facts and ignores hints.** A note that determines the
+> answer -- "the key economy is repairable and exactly one door can be
+> unlocked" -- is worth +3, reproducibly. A motif at lift 1.45 is worth
+> nothing. A true but non-determining note -- "this must be a dropped
+> corridor" -- is worth nothing, and may cost. Stage 13 found that tool
+> presentation moves behaviour without moving accuracy; this narrows it. What
+> moves accuracy is information that closes the question.
+
+**Kept:** the sole-unlock note (`--route`), the design memory as an opt-in
+(`--memory`, gated to cases where a key edit is legal -- no measured benefit,
+no measured cost, and it is the honest place to put a component whose motifs
+are real and too weak to act on). **Removed:** the doors-only note, and the
+earlier version of this work that answered forced cases *without* calling the
+model -- it scored 33/77 and, whatever its cost saving, an agent bypassed is
+not an agent evaluated.
+
+**Also fixed, and it was a real reproducibility bug:** `litellm` imports
+`tenacity` on its retry path without declaring it. A clean install works right
+up until the first request that needs retrying -- then every remaining case in
+the run dies. It surfaced here by running two arms concurrently and hitting a
+rate limit; 55 of 77 cases failed. Now pinned in `pyproject.toml`. Stage 12
+added insurance against a failure that had never fired; this one fired.
+
+Cost of the stage: $2.08 across seven runs.
 
 ---
 
@@ -516,13 +626,18 @@ tell about it.
 What survived the control is worth more for having survived it:
 
 - **The architecture works.** Solver as oracle, enumeration as candidate
-  generator, agent spending its whole budget on judgment: 42–44% intent
+  generator, agent spending its whole budget on judgment: 42–47% intent
   recovery against a deterministic 33.8%, a 6–8 case margin in every run, and
   a solvability gate it cannot fail by construction.
 - **Tool presentation reliably changes behaviour and reliably does not change
   accuracy.** Unlock choices fell 48 → 40 (41 on repeat) → 36 across the arms,
   a stable, reproducible shift. The score never left 31–34. You can steer what
   an agent reaches for far more easily than you can make it right.
+- **The agent converts facts and ignores hints.** Stage 16 gave it a memory of
+  the designers' habits and two notes about what the candidate set rules out.
+  The only thing that moved the score was the one note that *determines* an
+  answer, and it moved it by exactly its ceiling, five runs out of five. Motifs
+  measured at lift 1.45, and a true note that merely narrows, moved nothing.
 - **The real gap is not diagnosis.** Instrumented, the agent names the right
   kind of bug 76.6% of the time and produces the right repair 40.3% of the
   time, and 18 of 18 wrong diagnoses are fatal. Naming a fault and inverting it

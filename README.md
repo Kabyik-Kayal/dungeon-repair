@@ -74,6 +74,7 @@ VGLC .dot graphs ──► parser ──► Level ──► solver ──► win
                                         └──────► agent ◄───┘
                                         tools: diagnose, repair_options,
                                         compare, room_detail, submit
+                                        (+ design_rhythm, opt-in)
                                                    │
                                         human checkpoint ──► repaired level
 ```
@@ -87,6 +88,9 @@ VGLC .dot graphs ──► parser ──► Level ──► solver ──► win
   tools answer design questions, not correctness ones: how far apart are these
   rooms, what does this do to the key economy, does this repair collapse the
   winning route.
+- **Design memory** (`memory.py`, opt-in) — what the same designers' other
+  dungeons do with small keys, mined with the dungeon under repair held out.
+  Every tendency is reported with its measured lift, because they are all weak.
 - **Human checkpoint** — nothing is applied without approval. Evaluation runs
   auto-approve and the trace records that it was automatic.
 
@@ -154,11 +158,13 @@ shipping an unplayable level. Run with `openai/gpt-5.6-luna`; the full 77-case
 run costs about $0.39 for the agent and $0.27 for the single-prompt baseline.
 
 > **Read that number with its error bar.** The agent is not deterministic —
-> sampling parameters are unavailable on current reasoning models — and an
-> unchanged re-run of the shipped configuration scored **32/77 (41.6%)**. Call
-> it 42–44%. The baseline it is compared against is fully deterministic at
-> 26/77, so the margin is 6–8 cases in every run, but the agent's own figure
-> moves. See Stage 15 in [CHANGELOG.md](CHANGELOG.md).
+> sampling parameters are unavailable on current reasoning models. Across
+> **seven full runs** the agent has scored 32, 34, 34, 34, 34, 35 and 36 of 77:
+> call it **42–47%**, and never a single figure. The baseline it is compared
+> against is fully deterministic at 26/77, so the margin is 6–10 cases in every
+> run, but the agent's own number moves by up to four. An unchanged
+> configuration re-run against itself flips eight cases and agrees with itself
+> on about 60%. See Stages 15–16 in [CHANGELOG.md](CHANGELOG.md).
 
 The single-prompt baseline is the one to look at twice. It has no solver, so it
 is the only method here that ships broken levels: **16 of its 77 "repairs"
@@ -176,15 +182,32 @@ Intent recovery by corruption kind:
 That breakdown is the whole argument, and it is not flattering. Least-invasive-
 first ordering makes the deterministic repairer strong on spurious locks —
 unlocking a door is the first thing it tries, and often the right one — and the
-agent barely improves on it there, 26 against 25. The agent's entire advantage
-comes from severed corridors, where it goes from 1 to 8 by reasoning about
+agent barely improves on it there, 24 against 25. The agent's entire advantage
+comes from severed corridors, where it goes from 1 to 9 by reasoning about
 which rooms plausibly sat next to each other.
 
 **On displaced keys it scores 1 of 15.** That is the honest headline, and the
 failure is more specific than the number: the agent mostly does not pick a
 wrong room to put the key back in — it does not choose to move the key at all.
 
-We ran two experiments to fix that, and both failed informatively.
+Before reading the corridor column as a weak result, note what it took to beat.
+Three separate deterministic methods were built specifically to try, and none
+of them did:
+
+| method, on `severed_corridor` (n=31) | intent recovery |
+|---|---|
+| enumerate, first valid | 1 |
+| learned link prediction (leave-one-level-out logistic) | 2 |
+| hand-built structural ranker (boundary, id gap, degree) | 6 |
+| single prompt, no tools | 5 |
+| **the agent** | **9** |
+
+A perfect kind classifier plus the best of those rankers scores **33/77** — the
+same as the agent. Choosing which corridor a generator dropped is the one part
+of this problem that nothing but judgment touches.
+
+We ran four experiments against that. The first two failed informatively; the
+third explained why; the fourth is in Stage 16 below.
 
 **Rebalancing the tools** (Stage 13). The option list led with `unlock` and
 truncated, so on many cases the agent never saw the alternatives. Fixing it
@@ -219,6 +242,38 @@ first looked like evidence was the agent's own variance. **You can steer what
 an agent reaches for far more easily than you can make it right.**
 See [CHANGELOG.md](CHANGELOG.md) Stages 13–15.
 
+### Then we tried giving it what it was missing (Stage 16)
+
+Two things the failure analysis pointed at: a **memory** of the designers'
+habits, mined from the other dungeons with this one held out, and a way to tell
+the agent what the shape of the verified set already **rules out**. Both are
+opt-in (`--memory`, `--route`); the agent still decides every case and
+`design_rhythm` was called in 77 of 77 trajectories.
+
+Five runs of the arm against two of the baseline. One thing reproduced:
+
+| subset | baseline (2 runs) | informed agent (5 runs) |
+|---|---|---|
+| the solver certifies exactly one `unlock` (23 cases) | 18, 19 | **21, 21, 21, 21, 21** |
+| every other case (54) | 16, 13 | 14, 13, 13, 15, 13 |
+| **total** | 34, 32 | 35, 34, 34, 36, 34 |
+
+**21 of 23 is the deterministic ceiling of that rule** — the other two are
+displaced keys it mislabels. Handed one fact that closes the question, the
+agent reaches that ceiling five times out of five, without being bypassed.
+Nothing else moved: the headline means are 34.6 against 33, inside a noise
+floor already measured at eight flipped cases, and the design memory did not
+shift the displaced key at all.
+
+Two predictions were registered in advance and both were falsified — the write-up
+in [CHANGELOG.md](CHANGELOG.md) Stage 16 keeps them. What the seven runs
+together say is narrower and more useful than the score:
+
+> **The agent converts facts and ignores hints.** A note that determines the
+> answer is worth +3, reproducibly. A design motif measured at lift 1.45 is
+> worth nothing. A true but non-determining note — "this must be a dropped
+> corridor" — is worth nothing, and may cost.
+
 ## Reproducing
 
 See [REPRODUCE.md](REPRODUCE.md) for clean-environment setup, exact commands,
@@ -239,10 +294,19 @@ killed the original design, and the one that made the baseline harder to beat.
 
 ## Limitations
 
-- **The graphs carry no coordinates.** VGLC room graphs record connectivity,
-  not geometry, so "these rooms are next to each other" is approximated by hop
-  distance. A generator with real room positions would give the agent a much
-  stronger locality signal — and would also make some heuristics stronger.
+- **The graphs carry no coordinates, and that is a ceiling, not an
+  inconvenience.** VGLC room graphs record connectivity, not geometry, so "these
+  rooms are next to each other" is approximated by hop distance. **27 of the 31
+  severed corridors have their endpoints in different connected components**, so
+  every path-based link-prediction feature is identically zero, and room ids are
+  not a grid: prefix-connectivity fails 28.6% of the time in the originals.
+  Recovering the real geometry from VGLC's tile maps was attempted and
+  abandoned — the best segmentation still disagrees with the graphs on room
+  count in 17 of 18 dungeons. On coordinate-carrying dungeons built for the
+  test, requiring a corridor to join physically adjacent rooms cuts the
+  candidates from 73 to 4.4 with perfect recall, and a uniform pick among those
+  four is still only 25%. Geometry roughly triples the odds here; it does not
+  settle the question.
 - **One edit per case.** Corruptions are single mutations, and repairs are
   single edits. Compound breakage is not covered.
 - **Zelda-family mechanics.** Small keys, boss keys, key items, switches. A new
@@ -254,10 +318,12 @@ killed the original design, and the one that made the baseline harder to beat.
 ## What was built when
 
 Everything in `src/`, `tests/`, `scripts/` and the documentation was written
-during the hackathon. Pre-existing: the VGLC corpus (MIT, fetched not vendored),
+during the hackathon, including `route.py` and `memory.py` (Stage 16) and the
+44 tests, none of which need an API key. Pre-existing: the VGLC corpus (MIT, fetched not vendored),
 and the libraries in `pyproject.toml`. Claude Code was used as the coding agent
 throughout; see [CHANGELOG.md](CHANGELOG.md) for how, and `eval/traces/` for the
-repair agent's own trajectories.
+repair agent's own **539 trajectories across seven full runs**, indexed in
+[`eval/results/archive/README.md`](eval/results/archive/README.md).
 
 ## Licence
 

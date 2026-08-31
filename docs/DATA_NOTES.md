@@ -10,7 +10,8 @@ not by reading the paper.
 rooms with a comma-separated content label; edges are directed passages with a
 comma-separated requirement label. Directly machine-readable; no tile or pixel
 parsing needed. `Original/` is reference imagery and `Processed/` is tile maps —
-neither is used here.
+neither is used here, and the section below explains why the tile maps cannot
+be.
 
 | folder | dungeons |
 |---|---|
@@ -71,6 +72,32 @@ from 31/38 to 6/38.
 **Opened doors belong in the search state.** Small keys are fungible and
 consumed, so which door a key is spent on changes the outcome. `(room, keys,
 switches)` is under-specified and reports levels winnable that are not.
+
+## The tile maps are a different transcription
+
+The graphs carry no coordinates, which is the ceiling on repairing a severed
+corridor: you cannot tell which of ninety candidate passages a generator
+dropped without knowing which rooms were physically adjacent. `The Legend of
+Zelda/Processed/*.txt` looked like the way out — full tile maps of the base
+game's dungeons, from which room grid positions could be recovered.
+
+They do not line up with the graphs.
+
+Rooms are 16 wide by 11 tall with a two-row wall band, and a room is present
+where its interior contains `F`. Searching every plausible room size and row
+offset, the best segmentation still disagrees with the corresponding `.dot`
+graph on room count in **17 of 18 dungeons**, with a total error of 81 rooms:
+`LoZ_9` is 51 against 62, `LoZ2_9` is 52 against 66. The differences are far
+too large to be a segmentation bug.
+
+The graphs were built from the hand-drawn maps in `Graph PreProcessing/*.pdf`,
+not from the tile maps, and the two transcriptions of the same dungeons do not
+agree. Aligning them is a research problem, not a data-loading problem, and it
+would only ever cover base Zelda — Link to the Past ships a single PDF and no
+tile maps at all.
+
+Recorded because "just read the coordinates off the tile maps" is the obvious
+next idea, and it costs an afternoon to find out that it does not work.
 
 ## What was ruled out
 

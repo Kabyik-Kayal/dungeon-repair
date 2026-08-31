@@ -26,7 +26,14 @@ pip install -e ".[dev]"
 uv venv --python 3.11 && uv pip install -e ".[dev]"
 ```
 
-Installed: `litellm` (model access), `pytest` (tests). Nothing else.
+Installed: `litellm` (model access), `tenacity`, `pytest` (tests). Nothing else.
+
+`tenacity` is pinned because **litellm imports it on its retry path without
+declaring it**. A clean install works right up until the first request that
+needs retrying — then every remaining case in the run dies with
+`No module named 'tenacity'`. It surfaced here by running two arms concurrently
+and hitting a rate limit: 55 of 77 cases failed at once. If you install
+`litellm` yourself rather than through this project, install `tenacity` too.
 
 ## 2. Fetch the data
 
@@ -172,20 +179,46 @@ dungeon-repair run single_prompt --workers 4    # then the full set
 dungeon-repair run agent --workers 4
 ```
 
-To reproduce the diagnosis-first arm (Stage 14 in the changelog), which gates
-the repair tools behind a committed hypothesis and records what the agent
-believed before it saw any option:
+Three opt-in arms reproduce the experiments in the changelog. Each switches the
+prompt and the tool list together, so **the default run above stays
+byte-identical** to the one that produced the headline results:
 
 ```bash
+# Stage 14 — gate the repair tools behind a committed hypothesis, and record
+# what the agent believed before it saw any option
 dungeon-repair run agent --workers 4 --diagnose-first
+
+# Stage 16 — tell the agent what the shape of the verified set rules out
+dungeon-repair run agent --workers 4 --route
+
+# Stage 16 — also give it motifs mined from the designers' other dungeons,
+# with the dungeon under repair held out
+dungeon-repair run agent --workers 4 --route --memory
 ```
 
-The flag switches the prompt and the tool list together, so the default run
-above is byte-identical to the one that produced the headline results.
+`--route` adds one line to `diagnose` when the solver certifies exactly one
+`unlock` and the key economy is otherwise repairable. It never answers for the
+agent; the model is still called on every case. This is the only intervention
+in the project that produced a **reproducible** gain — 21 of those 23 cases
+right, five runs out of five, against 18 and 19 without it.
+
+`--memory` adds the `design_rhythm` tool. It is offered only on cases where a
+key edit is legal, since the motifs are about where keys sit. It showed no
+measured effect either way; it ships opt-in and honestly labelled.
+
+Run the arms **one at a time**. Two concurrent runs at `--workers 4` is enough
+to trigger rate limiting on the default model.
 
 `--workers` runs cases concurrently; per-case wall time is still measured per
 case. Both write per-case results to `eval/results/<method>.jsonl` and one
 trajectory per case to `eval/traces/`.
+
+Every earlier arm is kept rather than overwritten. `eval/results/archive/` holds
+one `.jsonl` and one `.summary.json` per run with a
+[README](eval/results/archive/README.md) naming each arm, its score and the
+changelog stage it belongs to; the matching trajectories are in
+`eval/traces/archive/<arm>/`. Ten full runs are archived, seven of them the
+agent.
 
 `single_prompt` is one call per case; `agent` is typically 3–6 calls per case
 with tool results, so its context grows across the run. At the default model's
@@ -223,9 +256,16 @@ dungeon-repair candidates 'spiral_keep#hard'   # every verified repair, no model
 pytest
 ```
 
-27 tests, **~30s**, no API key required — the agent loop is exercised with a
+44 tests, **~40s**, no API key required — the agent loop is exercised with a
 scripted model stand-in (`tests/conftest.py`). Tests that need the corpus or the
 case set skip cleanly if you have not run steps 2 and 4.
+
+Two of them are worth knowing about. `tests/test_memory.py` asserts that the
+design memory mined with a dungeon held out is byte-identical to one mined from
+a corpus that never contained it — that hold-out is the whole difference between
+evidence and leakage. `tests/test_route.py` pins the measured precision of the
+sole-unlock rule at 21 of the 23 cases where it fires, so a regression in it is
+visible without spending anything.
 
 ## 12. Read a trajectory
 
@@ -244,4 +284,5 @@ human checkpoint, and the final scored outcome.
 | Corpus | pinned to a commit |
 | Case generation | seeded (`--seed`), asserted reproducible |
 | Solver, enumeration | fully deterministic |
-| Model methods | not deterministic. Current Claude models reject sampling parameters, so `temperature=0` is not available; run-to-run variation is real and the trajectories are recorded so any individual result can be inspected |
+| Model methods | not deterministic. Current reasoning models reject sampling parameters, so `temperature=0` is not available. **Expect 32–36 of 77.** An unchanged configuration re-run against itself flips about eight cases and picks the identical repair on roughly 60%; seven full runs have scored 32, 34, 34, 34, 34, 35, 36. Every trajectory is recorded so any individual result can be inspected |
+| What must match exactly | 31/38 dungeons verify, 77 cases build, `first_valid` scores 26/77. If any of those differ, something is wrong and the tests will say which |
